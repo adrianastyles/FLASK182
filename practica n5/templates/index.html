@@ -8,6 +8,14 @@
 </head>
 <body>
     
+    {% with mensajes = get_flashed_messages() %}
+        {% if mensajes %}
+            {%for msj in mensajes%}
+                <h3> {{msj}} </h3>
+            {%endfor%}
+        {% endif %}
+    {% endwith %}
+
     <br>
     <br>
     <h1>Gestion de Albums</h1>
@@ -17,6 +25,7 @@
         <input type="text" name="txtTitulo" placeholder="Escribe título">
         <input type="text" name="txtArtista" placeholder="Escribe artista">
         <input type="number" name="txtAnio" placeholder="Escribe año">
+
         <button type="submit"> Guardar </button>
 
     </form>
