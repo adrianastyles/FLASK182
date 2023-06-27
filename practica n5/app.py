@@ -18,6 +18,7 @@ mysql = MySQL(app)
 #Ruta index http://localhost:5000
 #La ruta se compone del nombre de la ruta y su función
 @app.route('/')
+
 def index():
     return render_template('index.html')
 
