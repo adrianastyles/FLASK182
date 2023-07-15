@@ -58,19 +58,18 @@ def actualizar(id):
         flash('Flor actualizada correctamente')
         return redirect(url_for('index'))
     
-    
-@app.route('/busq/<nom>' ,methods=['POST'] )
-def busqR(nom):
-    
+@app.route('/bus/<nom>', methods=['POST'])
+def consultar(nom):
     if request.method == 'POST':
-        
+        curConsultar=mysql.connection.cursor()
         nom = request.form['txtNombre']
         
-        curAct = mysql.connection.cursor()
-        curAct.execute('select * from requisicion where nombre=%s', (nom,))
+        curConsultar = mysql.connection.cursor()
+        curConsultar.execute('select * from tbFlores where nombre=%s', (nom,))
         mysql.connection.commit()
-        
-        return redirect(url_for('index'))
+        consulID = curConsultar.fetchone()
+    
+        return render_template('index.html', florC=consulID)
 
 if __name__ =='__main__':
     app.run(port= 5000, debug=True)
