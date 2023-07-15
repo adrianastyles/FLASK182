@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultar flor</title>
+</head>
+<body>
+
+    <br>
+    <h1>Consultar flor</h1> 
+    <br>
+    <br>
+
+    <form action='/busq/{{flor.1}}' method="POST">
+        <input type="text" name="txtNombre" value="Ingrese el nombre">
+
+        <button type="submit"> Buscar </button>
+
+    </form>
+
+    <br>
+    <h1>Datos</h1>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <td>ID:</td>
+                <td>Nombre:</td>
+                <td>Cantidad:</td>
+                <td>Precio:</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for flor in consultaB %}
+                <tr>
+                   <td>{{flor.0}}</td>
+                   <td>{{flor.1}}</td>
+                   <td>{{flor.2}}</td>
+                   <td>{{flor.3}}</td>
+              </tr>
+            {%endfor%}    
+        </tbody>
+    </table>
+
+</body>
+</html>
