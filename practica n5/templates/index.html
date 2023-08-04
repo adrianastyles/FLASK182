@@ -1,60 +1,75 @@
-<!DOCTYPE html>
+{% extends 'plantillas.html' %} -heredar el archivo-
+{% block body %}
 
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD Albums</title>
-</head>
-<body>
-    
-    {% with mensajes = get_flashed_messages() %}
+    <div class="mt-5 mb-5">
+    <h1 class="display-1 text-center">Gestion de Albums</h1>
+    </div>
+
+    <div class="row container">
+
+        {% with mensajes=get_flashed_messages() %}
         {% if mensajes %}
-            {%for msj in mensajes%}
-                <h3> {{msj}} </h3>
-            {%endfor%}
+            {% for msj in mensajes %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong><h3> {{msj}} </h3></strong>
+                    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <script> Swal.fire('Buen trabajo!', 'Finalizamos con exito el  CRUD Flask!', 'success') </script>
+            {% endfor %}
         {% endif %}
-    {% endwith %}
+        {% endwith %}
 
-    <br>
-    <br>
-    <h1>Gestion de Albums</h1>
-    <br>
-
-    <form action='/guardar' method="POST">
-        <input type="text" name="txtTitulo" placeholder="Escribe título">
-        <input type="text" name="txtArtista" placeholder="Escribe artista">
-        <input type="number" name="txtAnio" placeholder="Escribe año">
-
-        <button type="submit"> Guardar </button>
-
-    </form>
-
-    <br>
-    <h1>Albums guardados</h1>
-    <br>
-    <table>
-        <thead>
+        <div class="col-md-5 margin-3">
+            <h1>Registro de Albums</h1>
+            <div class="card card-body mb-5">
+                <form action="/guardar" method="POST">
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="txtTitulo" placeholder="Escribe el Titulo" >
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="txtArtista" placeholder="Escribe el Artista" > 
+                    </div>
+                    <div class="mb-3">
+                        <input type="number" class="form-control" name="txtAnio" placeholder="Escribe el año" >
+                    </div>
+                    <div class="d-grid gap-2 col-8 mx-auto">
+                    <button type="submit" class="btn btn-outline-info" >Guardar</button>
+                    </div>
+                </form>
+            </div> <!--card body-->
+        </div> <!--col 5-->
+        <div class="col-md-6 margin-3">
+            <h1>Albums Guardados</h1>
+    
+    <table class="table table-info table-striped">
+        <thead >
             <tr>
-                <td>ID:</td>
-                <td>Nombre:</td>
-                <td>Artista:</td>
-                <td>Año de publicación:</td>
+                <th scope="ID">ID: </th>
+                <th scope="Album">Album:</th>
+                <th scope="Artista">Artista: </th>
+                <th scope="Año de Publicacion">Año de Publicacion: </th>
+                <th scope="Acciones">Acciones: </th>
             </tr>
         </thead>
         <tbody>
-            {% for album in listAlbums1 %}
-                <tr>
-                   <td>{{album.0}}</td>
-                   <td>{{album.1}}</td>
-                   <td>{{album.2}}</td>
-                   <td>{{album.3}}</td>
-                   <td><a href ="/editar/{{album.0}}">Editar</a></td>
-                   <td><a href ="">Eliminar</a></td>
-              </tr>
-            {%endfor%}    
+            {% for alb in listAlbums %}
+            <tr>
+                <td> {{alb.0}} </td>
+                <td> {{alb.1}} </td>
+                <td> {{alb.2}} </td>
+                <td> {{alb.3}} </td>
+                <td>
+                    <a href=/editar/{{alb.0}} class="btn btn-outline-warning"><i class="bi bi-pencil-square"></i></a>
+                    <a href=/borrar/{{alb.0}} class="btn btn-outline-danger"><i class="bi bi-trash"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
         </tbody>
     </table>
-
-</body>
-</html>
+        </div> <!--col 7-->
+    </div> <!--row-->
+    
+    
+    {% endblock %}
