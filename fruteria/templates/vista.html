@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Consulta frutas
+{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+
+<body>
+  <h1 class="text-center">Frutas</h1>
+  <table class="table table-striped table-hover">
+    <tr>
+      <th>ID</th>
+      <th>Fruta</th>
+      <th>Temporada</th>
+      <th>Precio</th>
+      <th>Cantidad</th>
+      <th>Acciones</th>
+    </tr>
+    {% for fruta in frutas %}
+    <tr>
+      <td>{{ fruta[0] }}</td>
+      <td>{{ fruta[1] }}</td>
+      <td>{{ fruta[2] }}</td>
+      <td>{{ fruta[3] }}</td>
+      <td>{{ fruta[4] }}</td>
+      <td>
+        <a href="/editar/{{ fruta.0 }}" class="btn btn-sm btn-info"><i class="bi bi-pencil"></i></a>
+        <a href="/eliminar/{{ fruta.0 }}" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro que deseas eliminar esta fruta?')"><i class="bi bi-trash"></i></a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+</div>
+</html>
+{% endblock %}
