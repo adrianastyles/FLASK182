@@ -1,0 +1,39 @@
+{% extends 'plantilla.html' %}
+
+{% block title %}
+  Consulta utiles
+{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+
+<body>
+  <h1 class="text-center">Útiles</h1>
+  <table class="table table-striped table-hover">
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Apellido Paterno</th>
+      <th>Apellido Materno</th>
+      <th>Puesto</th>
+      <th>Contraseña</th>
+      <th>Eliminar</th>
+    </tr>
+    {% for empleado in empleados %}
+    <tr>
+      <td>{{ empleado[0] }}</td>
+      <td>{{ empleado[1] }}</td>
+      <td>{{ empleado[2] }}</td>
+      <td>{{ empleado[3] }}</td>
+      <td>{{ empleado[4] }}</td>
+      <td>{{ empleado[5] }}</td>
+      <td>
+        <a href="/eliminar/{{ empleado.0 }}" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro que deseas eliminar este empleado?')"><i class="bi bi-trash"></i></a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+</div>
+</html>
+{% endblock %}

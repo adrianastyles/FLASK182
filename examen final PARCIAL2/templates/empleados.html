@@ -1,0 +1,39 @@
+{% extends 'plantilla.html' %}
+
+{% block title %}
+  Empleados
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="mt-4 mb-4 text-center">
+      <h1 class="display-4">Papelería</h1>
+  </div>  
+  <div class="formulario p-4 bg-light rounded">
+      <h2 class="h4 text-center mb-4">Nuevo empleado</h2>
+          <form action="/guardarEmpleados" method="POST">
+            <div class="form-group">
+              <label for="txtNU">Nombre(s):</label>
+              <input type="text" class="form-control" id="txtNE" name="txtNE" placeholder="Ingrese el nombre" required>
+            </div>
+            <div class="form-group">
+              <label for="txtAP">Apellido Paterno:</label>
+              <input type="text" class="form-control" id="txtAP" name="txtAP" placeholder="Ingrese el apellido paterno" required>
+            </div>
+            <div class="form-group">
+              <label for="txtAM">Apellido Materno:</label>
+              <input type="text" class="form-control" id="txtAM" name="txtAM" placeholder="Ingrese el apellido materno" required>
+            </div>
+            <div class="form-group">
+              <label for="txtPuesto">Puesto:</label>
+              <input type="text" class="form-control" id="txtPuesto" name="txtPuesto" placeholder="Ingrese el puesto del empleado" required>
+            </div>
+            <div class="form-group">
+                <label for="txtCont">Contraseña:</label>
+                <input type="password" class="form-control" id="txtCont" name="txtCont" placeholder="Ingrese una contraseña" required>
+              </div>
+          <button type="submit" class="btn btn-primary btn-block">Guardar</button>
+        </form>
+  </div>
+</div>
+{% endblock %}

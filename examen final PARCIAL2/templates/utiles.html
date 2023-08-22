@@ -1,0 +1,35 @@
+{% extends 'plantilla.html' %}
+
+{% block title %}
+  Inicio
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="mt-4 mb-4 text-center">
+      <h1 class="display-4">Papelería</h1>
+  </div>  
+  <div class="formulario p-4 bg-light rounded">
+      <h2 class="h4 text-center mb-4">Nuevo útil</h2>
+          <form action="/guardarUtiles" method="POST">
+            <div class="form-group">
+              <label for="txtNU">Nombre:</label>
+              <input type="text" class="form-control" id="txtNU" name="txtNU" placeholder="Ingrese el nombre" required>
+            </div>
+            <div class="form-group">
+              <label for="txtCU">Clasificación:</label>
+              <input type="text" class="form-control" id="txtCU" name="txtCU" placeholder="Clasificación" required>
+            </div>
+            <div class="form-group">
+              <label for="txtCantidad">Cantidad:</label>
+              <input type="text" class="form-control" id="txtCantidad" name="txtCantidad" placeholder="Ingrese la cantidad" required>
+            </div>
+            <div class="form-group">
+              <label for="txtPrecio">Precio de compra:</label>
+              <input type="text" class="form-control" id="txtPrecio" name="txtPrecio" placeholder="Ingrese el precio de compra" required>
+            </div>
+          <button type="submit" class="btn btn-primary btn-block">Guardar</button>
+        </form>
+  </div>
+</div>
+{% endblock %}
